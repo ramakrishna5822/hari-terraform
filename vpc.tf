@@ -1,14 +1,14 @@
 resource "aws_vpc" "dev" {
-    cidr_block = "10.50.0.0/16"
+    cidr_block = var.cidr_block
     enable_dns_hostnames = true
     tags = {
-        Name = "Hari-vpc"
+        Name = var.vpc_name
     }
 }
 
 resource "aws_internet_gateway" "igw" {
     vpc_id=aws_vpc.dev.id
     tags = {
-        Name = "Hari-igw"
+        Name = "${var.vpc_name}-igw"
     }
 }
